@@ -1,0 +1,72 @@
+query RunInput($inclusionTags: [String!]){
+  cart{
+    lines{
+      id
+      quantity
+      merchandise{
+        __typename
+        ... on ProductVariant{
+          product{
+            id
+            hasAnyTag(tags: $inclusionTags)
+          }
+        }
+      }
+    }
+  }
+  discountNode{
+    metafield(namespace: "custom-product-discount", key: "discount-values"){
+      value
+    }
+  }
+}
+
+# Query to get the shopify function ids
+
+# query getFunctionIds {
+#   shopifyFunctions(first: 25) {
+#     nodes {
+#       app {
+#         title
+#       }
+#       apiType
+#       title
+#       id
+#     }
+#   }
+# }
+
+
+# Mutation and variables to create Automatic Discount with metafield
+
+# mutation discountAutomaticAppCreate($automaticAppDiscount: DiscountAutomaticAppInput!) {
+#   discountAutomaticAppCreate(automaticAppDiscount: $automaticAppDiscount) {
+#     automaticAppDiscount {
+#       discountId
+#     }
+#     userErrors {
+#       field
+#       message
+#     }
+#   }
+# }
+# {
+#   "automaticAppDiscount": {
+#     "title": "Custom Product Discount",
+#     "functionId": "a9920cdb-b487-4524-9472-bfee71baf582",
+#     "startsAt": "2024-10-20T12:25:53.561Z",
+#     "metafields": {
+#       "namespace": "custom-product-discount",
+#       "key": "discount-values",
+#       "type": "json",
+#       "value": "{\"inclusionTags\":[\"diwali\",\"festival\"]}"
+#     }
+#   }
+# }
+
+
+
+# Product handles with the above tags
+
+# brave-new-world-by-aldous-huxley
+# pride-and-prejudice-by-jane-austen-anna-quindlen
