@@ -32,15 +32,15 @@ export function run(input) {
 
       // Determine discount value and message based on quantity
       if (quantity >= 6) {
-        discountMessage = "25% product discount";
-        discountValue = 0.25;
-      } else if (quantity >= 4) {
-        discountMessage = "20% product discount";
-        discountValue = 0.20;
-      } else if (quantity >= 2) {
-        discountMessage = "15% product discount";
+        discountMessage = "25% volume discount";
         discountValue = 0.15;
-      }
+      } else if (quantity >= 4) {
+        discountMessage = "20% volume discount";
+        discountValue = 0.10;
+      } else if (quantity >= 2) {
+        discountMessage = "15% volume discount";
+        discountValue = 0.05;
+      }      
 
       // If a valid discount applies, add it to the discounts array
       if (discountValue > 0) {
